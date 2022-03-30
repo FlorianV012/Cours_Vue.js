@@ -113,6 +113,22 @@ export default {
   },
   created() {
     this.getNewQuestion();
+
+    if (sessionStorage.getItem("winCount")) {
+      this.winCount = JSON.parse(sessionStorage.getItem("winCount"));
+    } else {
+      sessionStorage.setItem("winCount", JSON.stringify(this.winCount));
+    }
+
+    if (sessionStorage.getItem("loseCount")) {
+      this.loseCount = JSON.parse(sessionStorage.getItem("loseCount"));
+    } else {
+      sessionStorage.setItem("loseCount", JSON.stringify(this.loseCount));
+    }
+  },
+  updated() {
+    sessionStorage.setItem("winCount", JSON.stringify(this.winCount));
+    sessionStorage.setItem("loseCount", JSON.stringify(this.loseCount));
   },
 };
 </script>
