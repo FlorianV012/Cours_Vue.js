@@ -22,6 +22,14 @@ export default createStore({
       state.productsInBag = updatedBag;
       localStorage.setItem("productsInBag", JSON.stringify(state.productsInBag))
     },
+    increaseQuantity(state, productsInBag) {
+      productsInBag.quantity++;
+      localStorage.setItem("productsInBag", JSON.stringify(state.productsInBag))
+    },
+    decreaseQuantity(state, productsInBag) {
+      productsInBag.quantity--;
+      localStorage.setItem("productsInBag", JSON.stringify(state.productsInBag))
+    },
   },
   actions: {
     loadProducts({ commit }) {
@@ -41,6 +49,12 @@ export default createStore({
     },
     removeFromBag({ commit }, productId) {
       commit('removeFromBag', productId);
+    },
+    increaseQuantity({ commit }, productsInBag) {
+      commit('increaseQuantity', productsInBag);
+    },
+    decreaseQuantity({ commit }, productsInBag) {
+      commit('decreaseQuantity', productsInBag);
     },
   },
   modules: {

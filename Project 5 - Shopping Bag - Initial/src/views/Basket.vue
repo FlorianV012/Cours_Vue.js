@@ -21,12 +21,12 @@
             <span class="quantity-area">
               <button
                 :disabled="product.quantity <= 1"
-                @click="product.quantity--"
+                @click="decreaseQuantity(product)"
               >
                 -
               </button>
               <span class="quantity">{{ product.quantity }}</span>
-              <button @click="product.quantity++">+</button>
+              <button @click="increaseQuantity(product)">+</button>
             </span>
             <span class="amount"
               >US$ {{ (product.price * product.quantity).toFixed(2) }}</span
@@ -49,6 +49,12 @@ export default {
   name: "Basket",
   computed: mapState(["productsInBag"]),
   methods: {
+    increaseQuantity(product) {
+      this.$store.dispatch("increaseQuantity", product);
+    },
+    decreaseQuantity(product) {
+      this.$store.dispatch("decreaseQuantity", product);
+    },
     OrderTotal() {
       let total = 0;
       this.productsInBag.forEach((item) => {
